@@ -5,9 +5,13 @@ DERIVED_DATA ?= build/DerivedData
 
 .DEFAULT_GOAL := build
 
-.PHONY: build clean rebuild
+.PHONY: bootstrap build clean rebuild
 
-build:
+bootstrap:
+	git submodule update --init --recursive
+	External/objective-git/script/bootstrap
+
+build: bootstrap
 	$(XCODEBUILD) \
 		-workspace GitX.xcworkspace \
 		-scheme GitX \
