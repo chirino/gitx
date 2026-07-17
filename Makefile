@@ -3,6 +3,7 @@ BREW ?= brew
 ARCH ?= $(shell uname -m)
 CONFIGURATION ?= Debug
 DERIVED_DATA ?= build/DerivedData
+APP_PATH := $(abspath $(DERIVED_DATA)/Build/Products/$(CONFIGURATION)/GitX.app)
 
 .DEFAULT_GOAL := build
 
@@ -21,6 +22,7 @@ build: bootstrap
 		-destination 'platform=macOS,arch=$(ARCH)' \
 		-derivedDataPath $(DERIVED_DATA) \
 		build
+	@printf '\nGitX was built successfully.\nApplication: %s\n' "$(APP_PATH)"
 
 clean:
 	$(XCODEBUILD) \
