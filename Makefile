@@ -10,8 +10,8 @@ DERIVED_DATA ?= build/DerivedData
 
 bootstrap:
 	git submodule update --init --recursive
-	cp "$$($(BREW) --prefix libssh2)/lib/libssh2.a" External/objective-git/External/libssh2.a
-	cp "$$($(BREW) --prefix openssl)/lib/libcrypto.a" External/objective-git/External/libcrypto.a
+	cp -f "$$($(BREW) --prefix libssh2)/lib/libssh2.a" External/objective-git/External/libssh2.a
+	cp -f "$$($(BREW) --prefix openssl)/lib/libcrypto.a" External/objective-git/External/libcrypto.a
 
 build: bootstrap
 	$(XCODEBUILD) \
